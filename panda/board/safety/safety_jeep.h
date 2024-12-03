@@ -118,10 +118,10 @@ static void JEEP_rx_hook(const CANPacket_t *to_push) {
   }
 
   // driver torque
-  if ((GET_BUS(to_push) == 0U) && (addr == JEEP_EPS_2)) {
-    int torque_driver_new = ((GET_BYTE(to_push, 1) >> 4) | (GET_BYTE(to_push, 0) << 4)) * 0.5 - 1000U;
-    update_sample(&torque_driver, torque_driver_new);
-  }
+  //if ((GET_BUS(to_push) == 0U) && (addr == JEEP_EPS_2)) {
+  //  int torque_driver_new = ((GET_BYTE(to_push, 1) >> 4) | (GET_BYTE(to_push, 0) << 4)) * 0.5 - 1000U;
+  //  update_sample(&torque_driver, torque_driver_new);
+  //}
 
   // TODO: find cruise button message
 
