@@ -151,14 +151,14 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   
   // If steering controls messages are received on the destination bus, it's an indication
   // that the relay might be malfunctioning
-  bool stock_ecu_detected = false;
-  if  ((addr == JEEP_LKA_COMMAND) || (addr == JEEP_LKA_HUD_2) || (addr == JEEP_ACC_1)) {
-    if (GET_BUS(to_push) == 0U)
-      stock_ecu_detected = true;
-    }
-  generic_rx_checks(stock_ecu_detected);
+  //bool stock_ecu_detected = false;
+  //if  ((addr == JEEP_LKA_COMMAND) || (addr == JEEP_LKA_HUD_2) || (addr == JEEP_ACC_1)) {
+  //  if (GET_BUS(to_push) == 0U)
+  //    stock_ecu_detected = true;
+  //  }
+  //generic_rx_checks(stock_ecu_detected);
 
-  generic_rx_checks((GET_BUS(to_push) == 0U) && (addr == JEEP_LKA_COMMAND));
+  generic_rx_checks((GET_BUS(to_push) == 0U) && ((addr == JEEP_LKA_COMMAND) || (addr == JEEP_LKA_HUD_2) || (addr == JEEP_ACC_1)));
 }
 
 static bool jeep_tx_hook(const CANPacket_t *to_send) {
