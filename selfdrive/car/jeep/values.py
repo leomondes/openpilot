@@ -12,7 +12,7 @@ class CarControllerParams:
    self.ACC_1_STEP = 100
    self.STEER_ERROR_MAX = 80
 
-   self.STEER_MAX = 300
+   self.STEER_MAX = 3000
    self.STEER_DRIVER_ALLOWANCE = 250
    self.STEER_DRIVER_MULTIPLIER = 2  # weight driver torque heavily
    self.STEER_DRIVER_FACTOR = 1  # from dbc

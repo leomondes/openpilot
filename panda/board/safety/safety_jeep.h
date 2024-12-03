@@ -1,6 +1,6 @@
 // lateral limits
 const SteeringLimits JEEP_STEERING_LIMITS = {
-  .max_steer = 300,
+  .max_steer = 3000,
   .max_torque_error = 80,
   .max_rt_delta = 150,
   .max_rt_interval = 250000,

@@ -15,7 +15,7 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
 
   MAX_RATE_UP = 2
   MAX_RATE_DOWN = 2
-  MAX_TORQUE = 300
+  MAX_TORQUE = 3000
   MAX_RT_DELTA = 150
   RT_INTERVAL = 250000
   MAX_TORQUE_ERROR = 80
