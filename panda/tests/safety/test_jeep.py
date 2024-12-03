@@ -15,12 +15,12 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
 
   MAX_RATE_UP = 2
   MAX_RATE_DOWN = 2
-  MAX_TORQUE = 3000
+  MAX_TORQUE = 300
   MAX_RT_DELTA = 150
   RT_INTERVAL = 250000
   MAX_TORQUE_ERROR = 80
 
-  DRIVER_TORQUE_ALLOWANCE = 250
+  DRIVER_TORQUE_ALLOWANCE = 80
   DRIVER_TORQUE_FACTOR = 2
 
   def setUp(self):
