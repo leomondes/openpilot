@@ -158,7 +158,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   //  }
   //generic_rx_checks(stock_ecu_detected);
 
-  generic_rx_checks((GET_BUS(to_push) == 0U) && ((addr == JEEP_LKA_COMMAND) || (addr == JEEP_LKA_HUD_2) || (addr == JEEP_ACC_1)));
+  //generic_rx_checks((GET_BUS(to_push) == 0U) && ((addr == JEEP_LKA_COMMAND) || (addr == JEEP_LKA_HUD_2) || (addr == JEEP_ACC_1)));
 }
 
 static bool jeep_tx_hook(const CANPacket_t *to_send) {
