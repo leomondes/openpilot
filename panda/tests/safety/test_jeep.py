@@ -20,8 +20,8 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
   RT_INTERVAL = 250000
   MAX_TORQUE_ERROR = 80
 
-  DRIVER_TORQUE_ALLOWANCE = 100
-  DRIVER_TORQUE_FACTOR = 3
+  DRIVER_TORQUE_ALLOWANCE = 250
+  DRIVER_TORQUE_FACTOR = 2
 
   def setUp(self):
     self.packer = CANPackerPanda("renegade")
