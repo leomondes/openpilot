@@ -33,7 +33,7 @@ const CanMsg JEEP_TX_MSGS[] = {{JEEP_LKA_COMMAND, 0, 4}, {JEEP_LKA_HUD_2, 0, 8},
 // TODO: need to find a message for driver gas
 // TODO: re-check counter/checksum for ABS_3
 // TODO: reenable checksums/counters on ABS_1 and EPS_3 once checksums are bruteforced
-RxCheck JEEP_rx_checks[] = {
+RxCheck jeep_rx_checks[] = {
   {.msg = {{JEEP_ABS_1, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   //{.msg = {{JEEP_ABS_2, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ABS_3, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
@@ -48,14 +48,14 @@ RxCheck JEEP_rx_checks[] = {
   //{.msg = {{JEEP_BCM_1, 0, 4, .check_checksum = false, .max_counter = 0U, .frequency = 4U}, { 0 }, { 0 }}},
 };
 
-uint8_t JEEP_crc8_lut_j1850[256];  // Static lookup table for CRC8 SAE J1850
+uint8_t jeep_crc8_lut_j1850[256];  // Static lookup table for CRC8 SAE J1850
 
-static uint32_t JEEP_get_checksum(const CANPacket_t *to_push) {
+static uint32_t jeep_get_checksum(const CANPacket_t *to_push) {
   int checksum_byte = GET_LEN(to_push) - 1U;
   return (uint8_t)(GET_BYTE(to_push, checksum_byte));
 }
 
-static uint8_t JEEP_get_counter(const CANPacket_t *to_push) {
+static uint8_t jeep_get_counter(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
   if (addr == 0xFA) { //ABS_3 have different counter byte
     return (uint8_t)(((GET_BYTE(to_push, 4U) & 0x78) >> 3) & 0xFU);
@@ -65,7 +65,7 @@ static uint8_t JEEP_get_counter(const CANPacket_t *to_push) {
   }
 }
 
-static uint32_t JEEP_compute_crc(const CANPacket_t *to_push) {
+static uint32_t jeep_compute_crc(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
   int len = GET_LEN(to_push);
 
@@ -78,7 +78,7 @@ static uint32_t JEEP_compute_crc(const CANPacket_t *to_push) {
   
   for (int i = 0; i < len - 1; i++) {
     crc ^= (uint8_t)GET_BYTE(to_push, i);
-    crc = JEEP_crc8_lut_j1850[crc];
+    crc = jeep_crc8_lut_j1850[crc];
   }
 
   // TODO: bruteforce final XORs for Panda relevant messages
@@ -91,14 +91,14 @@ static uint32_t JEEP_compute_crc(const CANPacket_t *to_push) {
   return (uint8_t)(crc ^ final_xor);
 }
 
-static safety_config JEEP_init(uint16_t param) {
+static safety_config jeep_init(uint16_t param) {
   UNUSED(param);
 
-  gen_crc_lookup_table_8(0x2F, JEEP_crc8_lut_j1850);
-  return BUILD_SAFETY_CFG(JEEP_rx_checks, JEEP_TX_MSGS);
+  gen_crc_lookup_table_8(0x2F, jeep_crc8_lut_j1850);
+  return BUILD_SAFETY_CFG(jeep_rx_checks, JEEP_TX_MSGS);
 }
 
-static void JEEP_rx_hook(const CANPacket_t *to_push) {
+static void jeep_rx_hook(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
 
   // Update in-motion state by sampling wheel speeds
@@ -161,7 +161,7 @@ static void JEEP_rx_hook(const CANPacket_t *to_push) {
   generic_rx_checks((GET_BUS(to_push) == 0U) && (addr == JEEP_LKA_COMMAND));
 }
 
-static bool JEEP_tx_hook(const CANPacket_t *to_send) {
+static bool jeep_tx_hook(const CANPacket_t *to_send) {
   int addr = GET_ADDR(to_send);
   bool tx = true;
 
@@ -184,7 +184,7 @@ static bool JEEP_tx_hook(const CANPacket_t *to_send) {
   return tx;
 }
 
-static int JEEP_fwd_hook(int bus_num, int addr) {
+static int jeep_fwd_hook(int bus_num, int addr) {
   int bus_fwd = -1;
 
   switch (bus_num) {
@@ -206,12 +206,12 @@ static int JEEP_fwd_hook(int bus_num, int addr) {
   return bus_fwd;
 }
 
-const safety_hooks JEEP_hooks = {
-  .init = JEEP_init,
-  .rx = JEEP_rx_hook,
-  .tx = JEEP_tx_hook,
-  .fwd = JEEP_fwd_hook,
-  .get_counter = JEEP_get_counter,
-  .get_checksum = JEEP_get_checksum,
-  .compute_checksum = JEEP_compute_crc,
+const safety_hooks jeep_hooks = {
+  .init = jeep_init,
+  .rx = jeep_rx_hook,
+  .tx = jeep_tx_hook,
+  .fwd = jeep_fwd_hook,
+  .get_counter = jeep_get_counter,
+  .get_checksum = jeep_get_checksum,
+  .compute_checksum = jeep_compute_crc,
 };
