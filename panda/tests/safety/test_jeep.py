@@ -52,9 +52,9 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
     values = {"ACCEL_PEDAL_FOOT": 1 if gas_pressed > 0 else 0}
     return self.packer.make_can_msg_panda("ENGINE_2", 0, values)
 
-  #def _torque_driver_msg(self, driver_torque):
-  #  values = {"DRIVER_TORQUE": driver_torque}
-  #  return self.packer.make_can_msg_panda("EPS_2", 0, values)
+  def _torque_driver_msg(self, driver_torque):
+    values = {"DRIVER_TORQUE": driver_torque}
+    return self.packer.make_can_msg_panda("EPS_2", 0, values)
 
   def _torque_meas_msg(self, torque):
     values = {"EPS_TORQUE": torque}
