@@ -94,7 +94,12 @@ class CarState(CarStateBase):
       ("BCM_1", 4),  # 4Hz plus triggered updates
     ]
 
-    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.pt)
+    #return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.pt)
+
+    return {
+      Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
+      Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
+    }
 
 
   @staticmethod
@@ -103,7 +108,12 @@ class CarState(CarStateBase):
       ("LKA_HUD_2", 4),
     ]
 
-    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.cam)
+    #return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.cam)
+
+    return {
+      Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
+      Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
+    }
 
   @staticmethod
   def get_body_can_parser(CP):
@@ -114,4 +124,9 @@ class CarState(CarStateBase):
       ("ACC_4", 1), #from cabana
     ]
 
-    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.body)
+    #return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.body)
+
+    return {
+      Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
+      Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
+    }
