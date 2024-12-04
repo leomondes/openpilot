@@ -103,3 +103,6 @@ Pipfile
 # Ignore all local history of files
 .history
 .ionide
+msgq_repo
+rednose_repo
+teleoprtc_repo
