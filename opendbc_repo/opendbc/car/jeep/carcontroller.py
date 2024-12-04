@@ -11,7 +11,8 @@ class CarController(CarControllerBase):
     super().__init__(dbc_names, CP)
     self.CP = CP
     self.CCP = CarControllerParams(CP)
-    self.packer_pt = CANPacker('renegade')
+    #self.packer_pt = CANPacker('renegade')
+    self.packer_pt = CANPacker(dbc_names[Bus.pt])
 
     self.apply_steer_last = 0
     self.frame = 0
