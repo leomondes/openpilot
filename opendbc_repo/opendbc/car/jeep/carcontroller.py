@@ -1,9 +1,9 @@
 from opendbc.can.packer import CANPacker
-from openpilot.selfdrive.car import apply_driver_steer_torque_limits
-from openpilot.selfdrive.car.interfaces import CarControllerBase
+from opendbc.car import apply_driver_steer_torque_limits
+from opendbc.car.interfaces import CarControllerBase
 
-from openpilot.selfdrive.car.jeep import jeepcan
-from openpilot.selfdrive.car.jeep.values import CANBUS, CarControllerParams
+from opendbc.car.jeep import jeepcan
+from opendbc.car.jeep.values import CANBUS, CarControllerParams
 
 
 class CarController(CarControllerBase):

@@ -1,7 +1,7 @@
 from cereal import car
-from openpilot.selfdrive.car import get_safety_config
-from openpilot.selfdrive.car.interfaces import CarInterfaceBase
-from openpilot.selfdrive.car.jeep.values import CAR
+from opendbc.car import get_safety_config
+from opendbc.car.interfaces import CarInterfaceBase
+from opendbc.car.jeep.values import CAR
 
 
 class CarInterface(CarInterfaceBase):

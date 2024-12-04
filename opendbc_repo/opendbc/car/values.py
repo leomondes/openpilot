@@ -5,7 +5,7 @@ from opendbc.car.ford.values import CAR as FORD
 from opendbc.car.gm.values import CAR as GM
 from opendbc.car.honda.values import CAR as HONDA
 from opendbc.car.hyundai.values import CAR as HYUNDAI
-from openpilot.selfdrive.car.jeep.values import CAR as JEEP
+from opendbc.car.jeep.values import CAR as JEEP
 from opendbc.car.mazda.values import CAR as MAZDA
 from opendbc.car.mock.values import CAR as MOCK
 from opendbc.car.nissan.values import CAR as NISSAN

@@ -1,9 +1,9 @@
 import numpy as np
 from cereal import car
 from openpilot.common.conversions import Conversions as CV
-from openpilot.selfdrive.car.interfaces import CarStateBase
+from opendbc.car.interfaces import CarStateBase
 from opendbc.can.parser import CANParser
-from openpilot.selfdrive.car.jeep.values import DBC, CANBUS, CarControllerParams
+from opendbc.car.jeep.values import DBC, CANBUS, CarControllerParams
 
 
 GearShifter = car.CarState.GearShifter
