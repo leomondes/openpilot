@@ -10,8 +10,7 @@ class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP):
     self.CP = CP
     self.CCP = CarControllerParams(CP)
-    #self.packer_pt = CANPacker(dbc_name)
-    self.packer = CANPacker(dbc_names[Bus.pt])
+    self.packer_pt = CANPacker(dbc_name)
 
     self.apply_steer_last = 0
     self.frame = 0
