@@ -4,7 +4,7 @@ from openpilot.common.conversions import Conversions as CV
 from opendbc.car.interfaces import CarStateBase
 from opendbc.can.parser import CANParser
 from opendbc.car.jeep.values import DBC, CANBUS, CarControllerParams
-
+from opendbc.car import Bus, structs
 
 GearShifter = car.CarState.GearShifter
 STANDSTILL_THRESHOLD = 0
