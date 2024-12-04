@@ -5,6 +5,7 @@ from opendbc.car.docs_definitions import CarHarness, CarDocs, CarParts
 from opendbc.car.fw_query_definitions import FwQueryConfig, Request, StdQueries
 
 from opendbc.can.can_define import CANDefine
+from opendbc.car.structs import CarParams
 
 class CarControllerParams:
   def __init__(self, CP):
