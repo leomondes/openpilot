@@ -1,5 +1,5 @@
 from opendbc.can.packer import CANPacker
-from opendbc.car import apply_driver_steer_torque_limits
+from opendbc.car import Bus, apply_driver_steer_torque_limits
 from opendbc.car.interfaces import CarControllerBase
 
 from opendbc.car.jeep import jeepcan
