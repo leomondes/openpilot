@@ -1,5 +1,5 @@
 from opendbc.can.packer import CANPacker
-from opendbc.car import Bus, apply_driver_steer_torque_limits
+from opendbc.car import apply_driver_steer_torque_limits
 from opendbc.car.interfaces import CarControllerBase
 
 from opendbc.car.jeep import jeepcan
@@ -7,11 +7,11 @@ from opendbc.car.jeep.values import CANBUS, CarControllerParams
 
 
 class CarController(CarControllerBase):
-  def __init__(self, dbc_names, CP):
+  def __init__(self, dbc_name, CP):
     self.CP = CP
     self.CCP = CarControllerParams(CP)
     #self.packer_pt = CANPacker(dbc_name)
-    self.packer = CANPacker(dbc_names[Bus.pt])
+    self.packer = CANPacker(dbc_name[Bus.pt])
 
     self.apply_steer_last = 0
     self.frame = 0
