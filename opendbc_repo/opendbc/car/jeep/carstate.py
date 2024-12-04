@@ -15,7 +15,7 @@ class CarState(CarStateBase):
     self.frame = 0
     self.CCP = CarControllerParams(CP)
 
-  def update_pq(self, pt_cp, cam_cp, cp_body):
+  def update(self, pt_cp, cam_cp, cp_body):
     ret = car.CarState.new_message()
     # Update vehicle speed and acceleration from ABS wheel speeds.
     ret.wheelSpeeds = self.get_wheel_speeds(
