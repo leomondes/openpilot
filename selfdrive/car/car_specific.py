@@ -157,6 +157,16 @@ class CarSpecificEvents:
         self.low_speed_alert = False
       if self.low_speed_alert:
         events.add(EventName.belowSteerSpeed)
+    
+    elif self.CP.carName == 'jeep':
+      events = self.create_common_events(ret, pcm_enable=not self.CS.CP.openpilotLongitudinalControl)
+      # Low speed steer alert hysteresis logic
+      if self.CP.minSteerSpeed > 0. and ret.vEgo < (self.CP.minSteerSpeed + 0.5):
+        self.low_speed_alert = True
+      elif ret.vEgo > (self.CP.minSteerSpeed + 1.):
+        self.low_speed_alert = False
+      if self.low_speed_alert:
+        events.add(car.CarEvent.EventName.belowSteerSpeed)
 
     else:
       raise ValueError(f"Unsupported car: {self.CP.carName}")
