@@ -17,6 +17,7 @@ class CarState(CarStateBase):
 
   def update(self, pt_cp, cam_cp, cp_body):
     cp = can_parsers[Bus.pt]
+    pt_cp = can_parsers[Bus.pt]
     ret = car.CarState.new_message()
     # Update vehicle speed and acceleration from ABS wheel speeds.
     ret.wheelSpeeds = self.get_wheel_speeds(
