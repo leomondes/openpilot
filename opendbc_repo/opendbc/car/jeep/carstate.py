@@ -21,7 +21,9 @@ class CarState(CarStateBase):
     cam_cp = can_parsers[Bus.cam]
     cp_body = can_parsers[Bus.body]
 
-    ret = car.CarState.new_message()
+    #ret = car.CarState.new_message()
+    ret = structs.CarState()
+
     # Update vehicle speed and acceleration from ABS wheel speeds.
     ret.wheelSpeeds = self.get_wheel_speeds(
       pt_cp.vl["ABS_1"]["WHEEL_SPEED_FL"],
