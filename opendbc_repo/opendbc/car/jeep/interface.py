@@ -1,5 +1,5 @@
 from cereal import car
-from opendbc.car import Bus, get_safety_config
+from opendbc.car import get_safety_config
 from opendbc.car.interfaces import CarInterfaceBase
 from opendbc.car.jeep.values import CAR
 
@@ -29,10 +29,7 @@ class CarInterface(CarInterfaceBase):
   # returns a car.CarState
   def _update(self):
     #ret = self.CS.update(self.cp, self.cp_cam, self.cp_body)
-    pt_cp = can_parsers[Bus.pt]
-    cam_cp = can_parsers[Bus.cam]
-    cp_body = can_parsers[Bus.body]
-    ret = self.CS.update(pt_cp, cam_cp, cp_body)
+    ret = self.CS.update(pt_cp, cam_cp, ext_cp)
 
     events = self.create_common_events(ret, pcm_enable=not self.CS.CP.openpilotLongitudinalControl)
 
