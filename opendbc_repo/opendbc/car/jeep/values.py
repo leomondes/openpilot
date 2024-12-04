@@ -19,21 +19,17 @@ class CarControllerParams:
    self.STEER_DELTA_UP = 2
    self.STEER_DELTA_DOWN = 2
 
+   can_define = CANDefine(DBC[CP.carFingerprint][Bus.pt])
 
 class CANBUS:
   pt = 0
   body = 1
   cam = 2
 
-def dbc_dict(pt, radar):
-  return {Bus.pt: 0}
-
 @dataclass
 class JeepPlatformConfig(PlatformConfig):
   #dbc_dict: DbcDict = field(default_factory=lambda: dbc_dict('renegade', None))
-  dbc_dict: DbcDict = field(default_factory=lambda: {
-    Bus.pt: 'renegade',
-  })
+  dbc_dict: DbcDict = field(default_factory=lambda: {Bus.pt: 'renegade'})
 
 @dataclass(frozen=True, kw_only=True)
 class JeepCarSpecs(CarSpecs):
