@@ -63,13 +63,6 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
   def _torque_cmd_msg(self, apply_torque, steer_req=1):
     values = {"LKA_TORQUE": apply_torque, "LKA_ENABLED": 1 if steer_req else 0}
     return self.packer.make_can_msg_panda("LKA_COMMAND", 0, values)
-  
-  def make_can_msg_panda(self, name_or_addr, bus, values, fix_checksum=None):
-    msg = self.make_can_msg(name_or_addr, bus, values)
-    if fix_checksum is not None:
-      msg = fix_checksum(msg)
-    addr, dat, bus = msg
-    return libpanda_py.make_CANPacket(addr, bus, dat)
 
   def test_rx_hook(self):
     for count in range(20):
