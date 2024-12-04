@@ -79,7 +79,7 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
       self.assertTrue(self._rx(self._torque_meas_msg(0)), f"{count=}")
       self.assertTrue(self._rx(self._pcm_status_msg(False)), f"{count=}")
 
-  def checksum(msg):
+  def fix_checksum(msg):
     addr, dat, bus = msg
     crc = 0
     if addr in [0x1F6, 0xEE, 0xFE, 0xFA, 0xFC, 0xDE, 0x106, 0x101]:
