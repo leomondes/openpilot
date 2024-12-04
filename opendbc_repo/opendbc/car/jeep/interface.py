@@ -28,7 +28,8 @@ class CarInterface(CarInterfaceBase):
 
   # returns a car.CarState
   def _update(self):
-    ret = self.CS.update(self.cp, self.cp_cam, self.cp_body)
+    #ret = self.CS.update(self.cp, self.cp_cam, self.cp_body)
+    ret = self.CS.update(self.can_parsers)
 
     events = self.create_common_events(ret, pcm_enable=not self.CS.CP.openpilotLongitudinalControl)
 
