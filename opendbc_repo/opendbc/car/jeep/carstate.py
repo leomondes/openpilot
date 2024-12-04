@@ -13,12 +13,10 @@ STANDSTILL_THRESHOLD = 0
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
-    can_define = CANDefine(DBC[CP.carFingerprint][Bus.pt])
     self.frame = 0
     self.CCP = CarControllerParams(CP)
 
   def update(self, pt_cp, cam_cp, cp_body):
-    cp = can_parsers[Bus.pt]
     ret = car.CarState.new_message()
     # Update vehicle speed and acceleration from ABS wheel speeds.
     ret.wheelSpeeds = self.get_wheel_speeds(
