@@ -29,7 +29,7 @@ class CANBUS:
 @dataclass
 class JeepPlatformConfig(PlatformConfig):
   #dbc_dict: DbcDict = field(default_factory=lambda: dbc_dict('renegade', None))
-  dbc_dict: DbcDict = field(default_factory=lambda: {Bus.pt: 'renegade'})
+  dbc_dict: DbcDict = field(default_factory=lambda: {pt: 'renegade'})
 
 
 @dataclass(frozen=True, kw_only=True)
