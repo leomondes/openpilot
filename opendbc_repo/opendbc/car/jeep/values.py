@@ -26,7 +26,7 @@ class CANBUS:
   cam = 2
 
 def dbc_dict(pt, radar):
-  return {Bus.pt: pt, Bus.radar: radar}
+  return {Bus.pt: 0}
 
 @dataclass
 class JeepPlatformConfig(PlatformConfig):
