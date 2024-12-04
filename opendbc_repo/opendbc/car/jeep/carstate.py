@@ -4,7 +4,6 @@ from openpilot.common.conversions import Conversions as CV
 from opendbc.car.interfaces import CarStateBase
 from opendbc.can.parser import CANParser
 from opendbc.car.jeep.values import DBC, CANBUS, CarControllerParams
-from opendbc.car import Bus
 
 
 GearShifter = car.CarState.GearShifter
@@ -95,7 +94,7 @@ class CarState(CarStateBase):
       ("BCM_1", 4),  # 4Hz plus triggered updates
     ]
 
-    return CANParser(DBC[CP.carFingerprint][Bus.pt], messages, CANBUS.pt)
+    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.pt)
 
 
   @staticmethod
@@ -104,7 +103,7 @@ class CarState(CarStateBase):
       ("LKA_HUD_2", 4),
     ]
 
-    return CANParser(DBC[CP.carFingerprint][Bus.pt], messages, CANBUS.cam)
+    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.cam)
 
   @staticmethod
   def get_body_can_parser(CP):
@@ -115,4 +114,4 @@ class CarState(CarStateBase):
       ("ACC_4", 1), #from cabana
     ]
 
-    return CANParser(DBC[CP.carFingerprint][Bus.pt], messages, CANBUS.body)
+    return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.body)
