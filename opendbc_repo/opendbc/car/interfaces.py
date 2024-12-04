@@ -94,6 +94,7 @@ class CarInterfaceBase(ABC):
 
     self.CS: CarStateBase = CarState(CP)
     self.can_parsers: dict[StrEnum, CANParser] = self.CS.get_can_parsers(CP)
+    print(f"self.can_parsers: {self.can_parsers}")
 
     dbc_names = {bus: cp.dbc_name for bus, cp in self.can_parsers.items()}
     self.CC: CarControllerBase = CarController(dbc_names, CP)
