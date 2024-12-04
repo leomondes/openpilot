@@ -1,5 +1,5 @@
 from cereal import car
-from opendbc.car import get_safety_config
+from opendbc.car import Bus, get_safety_config
 from opendbc.car.interfaces import CarInterfaceBase
 from opendbc.car.jeep.values import CAR
 
