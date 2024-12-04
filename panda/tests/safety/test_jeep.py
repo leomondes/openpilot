@@ -28,7 +28,7 @@ def checksum(msg):
   ]
   
   crc = 0xFF
-  for byte in dat:
+  for byte in data:
     crc = crc8_table[crc ^ byte]
   crc ^= 0xFF
   ret = crc
