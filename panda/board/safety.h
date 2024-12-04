@@ -383,7 +383,7 @@ int set_safety_hooks(uint16_t mode, uint16_t param) {
 #endif
 #ifdef ALLOW_DEBUG
     {SAFETY_TESLA, &tesla_hooks},
-    {SAFETY_JEEP, &JEEP_hooks},
+    {SAFETY_JEEP, &jeep_hooks},
     {SAFETY_SUBARU_PREGLOBAL, &subaru_preglobal_hooks},
     {SAFETY_VOLKSWAGEN_PQ, &volkswagen_pq_hooks},
     {SAFETY_ALLOUTPUT, &alloutput_hooks},
