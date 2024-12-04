@@ -15,7 +15,12 @@ class CarState(CarStateBase):
     self.frame = 0
     self.CCP = CarControllerParams(CP)
 
-  def update(self, pt_cp, cam_cp, cp_body):
+  #def update(self, pt_cp, cam_cp, cp_body):
+  def update(self, can_parsers) -> structs.CarState:
+    pt_cp = can_parsers[Bus.pt]
+    cam_cp = can_parsers[Bus.cam]
+    cp_body = can_parsers[Bus.body]
+
     ret = car.CarState.new_message()
     # Update vehicle speed and acceleration from ABS wheel speeds.
     ret.wheelSpeeds = self.get_wheel_speeds(
@@ -99,6 +104,7 @@ class CarState(CarStateBase):
     return {
       Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
       Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
+      Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.body),
     }
 
 
@@ -113,6 +119,7 @@ class CarState(CarStateBase):
     return {
       Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
       Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
+      Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.body),
     }
 
   @staticmethod
@@ -129,4 +136,5 @@ class CarState(CarStateBase):
     return {
       Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
       Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
+      Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.body),
     }
