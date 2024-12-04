@@ -32,7 +32,7 @@ def crc8_sae_j1850(data):
 
 def checksum(msg):
   addr, dat, bus = msg
-  chksum = crc8_sae_j1850(data)
+  chksum = crc8_sae_j1850(dat)
   ret = chksum
   return addr, ret, bus
 
