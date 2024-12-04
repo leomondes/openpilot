@@ -19,6 +19,7 @@ class CarControllerParams:
    self.STEER_DELTA_UP = 2
    self.STEER_DELTA_DOWN = 2
 
+   can_define = CANDefine(DBC[CP.carFingerprint][Bus.pt])
 
 class CANBUS:
   pt = 0
