@@ -5,6 +5,20 @@ from panda.tests.libpanda import libpanda_py
 import panda.tests.safety.common as common
 from panda.tests.safety.common import CANPackerPanda
 
+def checksum(msg):
+  addr, dat, bus = msg
+  crc = 0
+  if addr in [0x1F6, 0xEE, 0xFE, 0xFA, 0xFC, 0xDE, 0x106, 0x101]:
+    crc = 0xFF
+  for i in range(len(d) - 1):
+    crc ^= d[i]
+    crc = crc8_lut_j1850[crc]
+  if addr in [0x1F6, 0xEE, 0xFE, 0xFA, 0xFC, 0xDE, 0x106, 0x101]:
+    crc ^= 0xFF
+  else:
+    crc ^= 0x0
+  ret = crc
+  return addr, ret, bus
 
 class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafetyTest):
   TX_MSGS = [[0x1F6, 0], [0x547, 0], [0x5A2, 0]]
@@ -72,20 +86,5 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
       self.assertTrue(self._rx(self._torque_meas_msg(0)), f"{count=}")
       self.assertTrue(self._rx(self._pcm_status_msg(False)), f"{count=}")
   
-  def checksum(msg):
-    addr, dat, bus = msg
-    crc = 0
-    if addr in [0x1F6, 0xEE, 0xFE, 0xFA, 0xFC, 0xDE, 0x106, 0x101]:
-        crc = 0xFF
-    for i in range(len(d) - 1):
-        crc ^= d[i]
-        crc = crc8_lut_j1850[crc]
-    if addr in [0x1F6, 0xEE, 0xFE, 0xFA, 0xFC, 0xDE, 0x106, 0x101]:
-        crc ^= 0xFF
-    else:
-        crc ^= 0x0
-    ret = crc
-    return addr, ret, bus
-
 if __name__ == "__main__":
   unittest.main()
