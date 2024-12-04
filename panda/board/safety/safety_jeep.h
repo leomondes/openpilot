@@ -34,7 +34,7 @@ const CanMsg JEEP_TX_MSGS[] = {{JEEP_LKA_COMMAND, 0, 4}, {JEEP_LKA_HUD_2, 0, 8},
 // TODO: re-check counter/checksum for ABS_3
 // TODO: reenable checksums/counters on ABS_1 and EPS_3 once checksums are bruteforced
 RxCheck jeep_rx_checks[] = {
-  {.msg = {{JEEP_ABS_1, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_ABS_1, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   //{.msg = {{JEEP_ABS_2, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ABS_3, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ABS_6, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
