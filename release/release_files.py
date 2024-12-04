@@ -108,7 +108,6 @@ whitelist = [
   "opendbc_repo/dbc/mazda_2017.dbc",
   "opendbc_repo/dbc/nissan_x_trail_2017_generated.dbc",
   "opendbc_repo/dbc/nissan_leaf_2018_generated.dbc",
-  "opendbc_repo/dbc/renegade.dbc",
   "opendbc_repo/dbc/subaru_global_2017_generated.dbc",
   "opendbc_repo/dbc/subaru_global_2020_hybrid_generated.dbc",
   "opendbc_repo/dbc/subaru_outback_2015_generated.dbc",
