@@ -83,8 +83,10 @@ class CarState(CarStateBase):
 
 
   @staticmethod
-  def get_can_parser(CP):
-    messages = [
+  #def get_can_parser(CP):
+  def get_can_parsers(CP):
+
+    pt_messages = [
       # sig_address, frequency
       ("ABS_1", 100),
       ("ABS_2", 100),
@@ -101,30 +103,17 @@ class CarState(CarStateBase):
 
     #return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.pt)
 
-    return {
-      Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
-      Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
-      Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.body),
-    }
-
-
-  @staticmethod
-  def get_cam_can_parser(CP):
-    messages = [
+  #@staticmethod
+  #def get_cam_can_parser(CP):
+    cam_messages = [
       ("LKA_HUD_2", 4),
     ]
 
     #return CANParser(DBC[CP.carFingerprint]["pt"], messages, CANBUS.cam)
-
-    return {
-      Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
-      Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
-      Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.body),
-    }
-
-  @staticmethod
-  def get_body_can_parser(CP):
-    messages = [
+  
+  #@staticmethod
+  #def get_body_can_parser(CP):
+    body_messages = [
       # sig_address, frequency
       ("ACC_2", 50), #from cabana
       ("ACC_3", 50),
@@ -136,5 +125,5 @@ class CarState(CarStateBase):
     return {
       Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], pt_messages, CANBUS.pt),
       Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.cam),
-      Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_messages, CANBUS.body),
+      Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], body_messages, CANBUS.body),
     }
