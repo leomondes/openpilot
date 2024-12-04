@@ -8,6 +8,7 @@ from opendbc.car.jeep.values import CANBUS, CarControllerParams
 
 class CarController(CarControllerBase):
   def __init__(self, dbc_names, CP):
+    super().__init__(dbc_names, CP)
     self.CP = CP
     self.CCP = CarControllerParams(CP)
     self.packer_pt = CANPacker(dbc_names[Bus.pt])
