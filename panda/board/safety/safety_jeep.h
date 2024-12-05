@@ -138,13 +138,6 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     brake_pressed = GET_BIT(to_push, 3);
   }
   
-  if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
-    // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
-    int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
-    bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
-    pcm_cruise_check(cruise_engaged);
-  }
-
   if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_4)) {
     // ACC main switch on is a prerequisite to enter controls, exit controls immediately on main switch off
     acc_main_on = GET_BIT(to_push, 49U);
@@ -153,6 +146,13 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     }
   }
   
+  if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
+    // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
+    int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
+    bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
+    pcm_cruise_check(cruise_engaged);
+  }
+
   // If steering controls messages are received on the destination bus, it's an indication
   // that the relay might be malfunctioning
 
