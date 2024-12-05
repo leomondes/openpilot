@@ -68,7 +68,6 @@ static uint8_t jeep_get_counter(const CANPacket_t *to_push) {
 static uint32_t jeep_compute_crc(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
   int len = GET_LEN(to_push);
-  counter = jeep_get_counter(to_push);
 
   // CRC is in the last byte, poly is same as SAE J1850 but uses a different init value and output XOR
   // For some addresses it uses standard SAE J8150
@@ -88,6 +87,8 @@ static uint32_t jeep_compute_crc(const CANPacket_t *to_push) {
   if (addr == 0x1F6 || addr == 0xEE || addr == 0xFE || addr == 0xFA || addr == 0xFC || addr == 0xDE || addr == 0x106 || addr == 0x101) {
     final_xor = 0xFFU;  
   }
+
+  uint8_t counter = jeep_get_counter(to_push);
 
   return (uint8_t)(crc ^ final_xor);
 }
