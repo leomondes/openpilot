@@ -88,6 +88,8 @@ static uint32_t jeep_compute_crc(const CANPacket_t *to_push) {
     final_xor = 0xFFU;  
   }
 
+  uint8_t counter = jeep_get_counter(to_push);
+
   return (uint8_t)(crc ^ final_xor);
 }
 
