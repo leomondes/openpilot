@@ -126,7 +126,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   // TODO: find cruise button message
 
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ENGINE_2)) {
-    int gas_pedal = ((GET_BYTE(to_push, 1) >> 5) | (GET_BYTE(to_push, 0) & 0x1FU << 3));
+    int gas_pedal = ((GET_BYTE(to_push, 1) >> 5) | (GET_BYTE(to_push, 0) & 0x1FU << 3)) * 0.4;
     gas_pressed = gas_pedal > 0;
   }  
     
