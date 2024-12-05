@@ -143,10 +143,12 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     // Always exit controls on main switch off
     int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
     bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
-    acc_main_on = cruise_engaged;
-
     pcm_cruise_check(cruise_engaged);
+  }
 
+  if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_4)) {
+    // ACC main switch on is a prerequisite to enter controls, exit controls immediately on main switch off
+    acc_main_on = GET_BIT(to_push, 49U);
     if (!acc_main_on) {
       controls_allowed = false;
     }
