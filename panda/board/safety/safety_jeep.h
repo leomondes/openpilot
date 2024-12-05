@@ -34,7 +34,7 @@ const CanMsg JEEP_TX_MSGS[] = {{JEEP_LKA_COMMAND, 0, 4}, {JEEP_LKA_HUD_2, 0, 8},
 // TODO: re-check counter/checksum for ABS_3
 // TODO: reenable checksums/counters on ABS_1 and EPS_3 once checksums are bruteforced
 RxCheck jeep_rx_checks[] = {
-  {.msg = {{JEEP_ABS_1, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_ABS_1, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   //{.msg = {{JEEP_ABS_2, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ABS_3, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ABS_6, 0, 8, .check_checksum = false, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
@@ -97,7 +97,7 @@ static safety_config jeep_init(uint16_t param) {
   brake_pressed = false;
   gas_pressed = false;
 
-  gen_crc_lookup_table_8(0x2F, jeep_crc8_lut_j1850);
+  gen_crc_lookup_table_8(0x1D, jeep_crc8_lut_j1850);
   return BUILD_SAFETY_CFG(jeep_rx_checks, JEEP_TX_MSGS);
 }
 
