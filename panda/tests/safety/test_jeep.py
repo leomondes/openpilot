@@ -5,6 +5,11 @@ from panda.tests.libpanda import libpanda_py
 import panda.tests.safety.common as common
 from panda.tests.safety.common import CANPackerPanda
 
+def checksum(msg):
+  addr, dat, bus = msg
+  if addr == 0xEE:
+    ret = dat[7]
+  return addr, ret, bus
 
 class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafetyTest):
   TX_MSGS = [[0x1F6, 0], [0x547, 0], [0x5A2, 0]]
@@ -38,7 +43,7 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
 
   def _speed_msg(self, speed):
     values = {"WHEEL_SPEED_%s" % s: speed for s in ["FL", "FR", "RL", "RR"]}
-    return self.packer.make_can_msg_panda("ABS_1", 0, values)
+    return self.packer.make_can_msg_panda("ABS_1", 0, values, fix_checksum=checksum)
 
   def _speed_msg_2(self, speed):
     values = {"VEHICLE_SPEED": speed}
