@@ -112,7 +112,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     int wheel_speed_fr = (GET_BYTE(to_push, 3) >> 6) | (GET_BYTE(to_push, 2) << 2) | ((GET_BYTE(to_push, 1) & 0x7U) << 10);
     int wheel_speed_rl = (GET_BYTE(to_push, 4) >> 1) | ((GET_BYTE(to_push, 3) & 0x3FU) << 7);
     int wheel_speed_rr = (GET_BYTE(to_push, 6) >> 4) | (GET_BYTE(to_push, 5) << 4) | ((GET_BYTE(to_push, 4) & 0x1U) << 12);
-    vehicle_moving = (wheel_speed_fl + wheel_speed_fr + wheel_speed_rl + wheel_speed_rr)/4 > 0;
+    vehicle_moving = (wheel_speed_fl + wheel_speed_fr + wheel_speed_rl + wheel_speed_rr)*0.017/4 > 0;
   }
 
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_EPS_2)) {
@@ -129,7 +129,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   // TODO: find cruise button message
 
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ENGINE_2)) {
-    int gas_pedal = ((GET_BYTE(to_push, 1) >> 5) | (GET_BYTE(to_push, 0) & 0x1FU << 3)) * 0.4;
+    float gas_pedal = ((GET_BYTE(to_push, 1) >> 5) | (GET_BYTE(to_push, 0) & 0x1FU << 3)) * 0.4;
     gas_pressed = gas_pedal > 0;
   }  
     
