@@ -131,13 +131,11 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ENGINE_2)) {
     int gas_pedal = ((GET_BYTE(to_push, 1) >> 5) | (GET_BYTE(to_push, 0) & 0x1FU << 3)) * 0.4;
     gas_pressed = gas_pedal > 0;
-    update_sample(&user_gas, gas_pressed);
   }  
     
   // Signal: ABS_3.BRAKE_PEDAL_SWITCH
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ABS_3)) {
     brake_pressed = GET_BIT(to_push, 3);
-    update_sample(&user_brake, brake_pressed);
   }
   
   if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
