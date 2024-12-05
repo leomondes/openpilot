@@ -108,10 +108,10 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ABS_1)) {
     // Thanks, FCA, for these 13 bit signals. Makes perfect sense. Great work.
     // Signals: ABS_1.WHEEL_SPEED_[FL,FR,RL,RR]
-    int wheel_speed_fl = (GET_BYTE(to_push, 1) >> 3) | (GET_BYTE(to_push, 0) << 5);
-    int wheel_speed_fr = (GET_BYTE(to_push, 3) >> 6) | (GET_BYTE(to_push, 2) << 2) | ((GET_BYTE(to_push, 1) & 0x7U) << 10);
-    int wheel_speed_rl = (GET_BYTE(to_push, 4) >> 1) | ((GET_BYTE(to_push, 3) & 0x3FU) << 7);
-    int wheel_speed_rr = (GET_BYTE(to_push, 6) >> 4) | (GET_BYTE(to_push, 5) << 4) | ((GET_BYTE(to_push, 4) & 0x1U) << 12);
+    int wheel_speed_fl = (GET_BYTE(to_push, 1) >> 3) | (GET_BYTE(to_push, 0) << 5) * 0.017;
+    int wheel_speed_fr = (GET_BYTE(to_push, 3) >> 6) | (GET_BYTE(to_push, 2) << 2) | ((GET_BYTE(to_push, 1) & 0x7U) << 10) * 0.017;
+    int wheel_speed_rl = (GET_BYTE(to_push, 4) >> 1) | ((GET_BYTE(to_push, 3) & 0x3FU) << 7) * 0.017;
+    int wheel_speed_rr = (GET_BYTE(to_push, 6) >> 4) | (GET_BYTE(to_push, 5) << 4) | ((GET_BYTE(to_push, 4) & 0x1U) << 12) * 0.017;
     vehicle_moving = (wheel_speed_fl + wheel_speed_fr + wheel_speed_rl + wheel_speed_rr)/4 > 0;
   }
 
