@@ -30,8 +30,11 @@ const SteeringLimits JEEP_STEERING_LIMITS = {
 // TODO: need to find a button message for cancel spam
 const CanMsg JEEP_TX_MSGS[] = {{JEEP_LKA_COMMAND, 0, 4}, {JEEP_LKA_HUD_2, 0, 8}, {JEEP_ACC_1, 0, 8}};
 
+<<<<<<< HEAD
 bool cruise_engaged = false;
 
+=======
+>>>>>>> parent of 553737440 (try fix)
 // TODO: need to find a message for driver gas
 // TODO: re-check counter/checksum for ABS_3
 // TODO: reenable checksums/counters on ABS_1 and EPS_3 once checksums are bruteforced
@@ -145,13 +148,9 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     // Always exit controls on main switch off
     int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
     bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
+    acc_main_on = cruise_engaged;
 
     pcm_cruise_check(cruise_engaged);
-  }
-  
-  if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_4)) {
-    bool acc_available = GET_BIT(to_push, 49);
-    acc_main_on = cruise_engaged & acc_available;
 
     if (!acc_main_on) {
       controls_allowed = false;

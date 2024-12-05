@@ -5,7 +5,6 @@ from panda.tests.libpanda import libpanda_py
 import panda.tests.safety.common as common
 from panda.tests.safety.common import CANPackerPanda
 
-
 class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafetyTest):
   TX_MSGS = [[0x1F6, 0], [0x547, 0], [0x5A2, 0]]
   STANDSTILL_THRESHOLD = 0
