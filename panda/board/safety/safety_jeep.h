@@ -30,7 +30,7 @@ const SteeringLimits JEEP_STEERING_LIMITS = {
 // TODO: need to find a button message for cancel spam
 const CanMsg JEEP_TX_MSGS[] = {{JEEP_LKA_COMMAND, 0, 4}, {JEEP_LKA_HUD_2, 0, 8}, {JEEP_ACC_1, 0, 8}};
 
-bool cruise_engaged = false;
+bool cruise_engaged = false
 
 // TODO: need to find a message for driver gas
 // TODO: re-check counter/checksum for ABS_3
