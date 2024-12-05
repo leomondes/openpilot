@@ -48,7 +48,7 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
     values = {"BRAKE_PEDAL_SWITCH": brake}
     return self.packer.make_can_msg_panda("ABS_3", 0, values)
 
-  def _user_gas_msg(self, gas_pressed):
+  def _user_gas_msg(self, gas_pressed=1):
     values = {"ACCEL_PEDAL_FOOT": gas_pressed}
     return self.packer.make_can_msg_panda("ENGINE_2", 0, values)
 
