@@ -35,17 +35,17 @@ const CanMsg JEEP_TX_MSGS[] = {{JEEP_LKA_COMMAND, 0, 4}, {JEEP_LKA_HUD_2, 0, 8},
 // TODO: reenable checksums/counters on ABS_1 and EPS_3 once checksums are bruteforced
 RxCheck jeep_rx_checks[] = {
   {.msg = {{JEEP_ABS_1, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
-  //{.msg = {{JEEP_ABS_2, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_ABS_2, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ABS_3, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ABS_6, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ACC_2, 1, 8, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
-  //{.msg = {{JEEP_ACC_3, 1, 4, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
-  //{.msg = {{JEEP_ACC_4, 1, 8, .check_checksum = false, .max_counter = 0U, .frequency = 1U}, { 0 }, { 0 }}},
-  //{.msg = {{JEEP_ENGINE_1, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_ACC_3, 1, 4, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_ACC_4, 1, 8, .check_checksum = false, .max_counter = 0U, .frequency = 1U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_ENGINE_1, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ENGINE_2, 0, 8, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
-  //{.msg = {{JEEP_EPS_1, 0, 6, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_EPS_1, 0, 6, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_EPS_2, 0, 7, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
-  //{.msg = {{JEEP_BCM_1, 0, 4, .check_checksum = false, .max_counter = 0U, .frequency = 4U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_BCM_1, 0, 4, .check_checksum = false, .max_counter = 0U, .frequency = 4U}, { 0 }, { 0 }}},
 };
 
 uint8_t jeep_crc8_lut_j1850[256];  // Static lookup table for CRC8 SAE J1850
