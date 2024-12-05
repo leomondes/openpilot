@@ -49,7 +49,7 @@ class CarState(CarStateBase):
     # TODO: unsure if this is accel pedal or engine throttle
     #ret.gas = pt_cp.vl["ENGINE_1"]["ACCEL_PEDAL"]
     ret.gas = pt_cp.vl["ENGINE_2"]["ACCEL_PEDAL_FOOT"]
-    ret.gasPressed = ret.gas > 0
+    ret.gasPressed = pt_cp.vl["ENGINE_2"]["ACCEL_PEDAL_FOOT"] > 0
     ret.brake = pt_cp.vl["ABS_4"]["BRAKE_PRESSURE"]
     ret.brakePressed = bool(pt_cp.vl["ABS_3"]["BRAKE_PEDAL_SWITCH"])
     ret.parkingBrake = bool(pt_cp.vl["ENGINE_3"]["HANDBRAKE"]) 
