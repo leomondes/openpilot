@@ -94,6 +94,9 @@ static uint32_t jeep_compute_crc(const CANPacket_t *to_push) {
 static safety_config jeep_init(uint16_t param) {
   UNUSED(param);
 
+  brake_pressed = false;
+  gas_pressed = false;
+
   gen_crc_lookup_table_8(0x2F, jeep_crc8_lut_j1850);
   return BUILD_SAFETY_CFG(jeep_rx_checks, JEEP_TX_MSGS);
 }
