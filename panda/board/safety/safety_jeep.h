@@ -150,8 +150,6 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     acc_main_on = GET_BIT(to_push, 49U);
     if (!acc_main_on) {
       controls_allowed = false;
-    } else {
-      controls_allowed = true;
     }
   }
   
