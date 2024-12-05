@@ -2,7 +2,7 @@
 const SteeringLimits JEEP_STEERING_LIMITS = {
   .max_steer = 300,
   .max_torque_error = 80,
-  .max_rt_delta = 150,
+  .max_rt_delta = 75,        // 2 max rate up * 100Hz LKA send rate * 250000 RT interval / 1000000 = 50 ; 50 * 1.5 for safety pad = 75
   .max_rt_interval = 250000,
   .max_rate_up = 2,
   .max_rate_down = 2,
