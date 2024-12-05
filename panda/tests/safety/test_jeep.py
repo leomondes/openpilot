@@ -49,7 +49,7 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
     return self.packer.make_can_msg_panda("ABS_3", 0, values)
 
   def _user_gas_msg(self, gas_pressed=1):
-    values = {"ACCEL_PEDAL_FOOT": gas_pressed}
+    values = {"ACCEL_PEDAL_FOOT": 1 if gas_pressed > 0 else 0}
     return self.packer.make_can_msg_panda("ENGINE_2", 0, values)
 
   def _torque_driver_msg(self, driver_torque):
@@ -67,10 +67,10 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
   def test_rx_hook(self):
     for count in range(20):
       self.assertTrue(self._rx(self._speed_msg(0)), f"{count=}")
-      self.assertTrue(self._rx(self._user_brake_msg(0)), f"{count=}")
+      self.assertTrue(self._rx(self._user_brake_msg(True)), f"{count=}")
       self.assertTrue(self._rx(self._user_gas_msg(0)), f"{count=}")
       self.assertTrue(self._rx(self._torque_meas_msg(0)), f"{count=}")
-      self.assertTrue(self._rx(self._pcm_status_msg(0)), f"{count=}")
+      self.assertTrue(self._rx(self._pcm_status_msg(False)), f"{count=}")
 
 if __name__ == "__main__":
   unittest.main()
