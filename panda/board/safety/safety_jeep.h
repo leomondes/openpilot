@@ -151,7 +151,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   // Check gear not in P to allow control
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ENGINE_3)) {
     // ACC main switch on is a prerequisite to enter controls, exit controls immediately on main switch off
-    bool controls_allowed = (GET_BYTE(to_push, 2) & 0xE0U) > 1;
+    controls_allowed = (GET_BYTE(to_push, 2) & 0xE0U) > 1;
   }
   
   if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
