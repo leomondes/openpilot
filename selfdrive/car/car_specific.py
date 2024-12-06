@@ -167,7 +167,7 @@ class CarSpecificEvents:
       elif CS.vEgo > (self.CP.minSteerSpeed + 1.):
         self.low_speed_alert = False
       if self.low_speed_alert:
-        events.add(car.CarEvent.EventName.belowSteerSpeed)
+        events.add(EventName.belowSteerSpeed)
 
     else:
       raise ValueError(f"Unsupported car: {self.CP.carName}")
