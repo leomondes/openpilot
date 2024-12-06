@@ -21,7 +21,6 @@ const SteeringLimits JEEP_STEERING_LIMITS = {
 #define JEEP_ACC_4           0x73C // No counter and checksum
 #define JEEP_ENGINE_1        0xFC // CRC-8/SAE-J1850
 #define JEEP_ENGINE_2        0x1F0 // No counter and checksum
-#define JEEP_ENGINE_3        0x5A9 // No counter and checksum
 #define JEEP_EPS_1           0xDE // CRC-8/SAE-J1850
 #define JEEP_EPS_2           0x106 // CRC-8/SAE-J1850
 #define JEEP_LKA_COMMAND     0x1F6 // CRC-8/SAE-J1850
@@ -44,7 +43,6 @@ RxCheck jeep_rx_checks[] = {
   {.msg = {{JEEP_ACC_4, 1, 8, .check_checksum = false, .max_counter = 0U, .frequency = 1U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ENGINE_1, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ENGINE_2, 0, 8, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
-  {.msg = {{JEEP_ENGINE_3, 0, 8, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_EPS_1, 0, 6, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_EPS_2, 0, 7, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_BCM_1, 0, 4, .check_checksum = false, .max_counter = 0U, .frequency = 4U}, { 0 }, { 0 }}},
@@ -144,14 +142,6 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     // ACC main switch on is a prerequisite to enter controls, exit controls immediately on main switch off
     acc_main_on = GET_BIT(to_push, 49U);
     if (!acc_main_on) {
-      controls_allowed = false;
-    }
-  }
-
-  // Check gear not in P
-  if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ENGINE_3)) {
-    // ACC main switch on is a prerequisite to enter controls, exit controls immediately on main switch off
-    if (GET_BYTE(to_push, 2) & 0xE0U) > 1 {
       controls_allowed = false;
     }
   }
