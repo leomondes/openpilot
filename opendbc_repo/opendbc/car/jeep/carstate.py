@@ -69,7 +69,7 @@ class CarState(CarStateBase):
     #  ret.gearShifter = GearShifter.drive
 
     ret.cruiseState.available = bool(cp_body.vl["ACC_4"]["ACC_AVAILABLE"])
-    ret.cruiseState.enabled = cp_body.vl["ACC_2"]["ACC_ACTIVE"] in (6, 7, 8) and pt_cp.vl["ENGINE_3"]["GEAR"] > 1 
+    ret.cruiseState.enabled = cp_body.vl["ACC_2"]["ACC_ACTIVE"] in (6, 7, 8) #and pt_cp.vl["ENGINE_3"]["GEAR"] > 1 
     # add check speed/gear because when turn off car for a brief moment ACC_ACTIVE = 7
     ret.cruiseState.speed = cp_body.vl["ACC_4"]["ACC_SPEED"] * CV.KPH_TO_MS
 
