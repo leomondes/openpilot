@@ -186,6 +186,12 @@ void ignition_can_hook(CANPacket_t *to_push) {
       ignition_can_cnt = 0U;
     }
 
+    // Renegade exception
+    if ((addr == 0xFA) && (len == 8)) {
+      ignition_can = GET_BIT(to_push, 43) == 1;
+      ignition_can_cnt = 0U;
+    }
+
   }
 }
 
