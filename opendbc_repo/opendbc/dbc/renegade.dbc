@@ -66,7 +66,7 @@ BO_ 254 ABS_2: 8 ABS
 
 BO_ 257 ABS_6: 8 ABS
  SG_ VEHICLE_SPEED : 0|12@0+ (0.017,0) [0|2047] "" XXX
- SG_ ACC_BRAKE : 5|1@0+ (1,0) [0|1] "" XXX
+ SG_ ABS_BRAKE : 5|1@0+ (1,0) [0|1] "" XXX
  SG_ BRAKE_PRESSURE_1 : 20|11@0+ (1,0) [0|2047] "" XXX
  SG_ COUNTER : 51|4@0+ (1,0) [0|15] "" XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
@@ -150,10 +150,8 @@ BO_ 496 ENGINE_2: 8 XXX
 BO_ 498 ACC_2: 8 XXX
  SG_ ACC_ACTIVE : 35|4@0+ (1,0) [0|15] "" XXX
 
-BO_ 501 NEW_MSG_1F5: 5 XXX
- SG_ NEW_SIGNAL_2 : 22|1@0+ (1,0) [0|1] "" XXX
- SG_ NEW_SIGNAL_3 : 27|4@0+ (1,0) [0|15] "" XXX
- SG_ NEW_SIGNAL_1 : 39|8@0+ (1,0) [0|255] "" XXX
+BO_ 501 ACC_5: 5 XXX
+ SG_ ACC_BRAKE : 2|1@0+ (1,0) [0|1] "" XXX
 
 BO_ 502 LKA_COMMAND: 4 CAMERA
  SG_ LKA_TORQUE : 7|11@0+ (1,-1024) [0|2047] "" XXX
@@ -274,6 +272,7 @@ BO_ 1852 ACC_4: 8 XXX
 BO_ 1854 BCM_1: 4 BCM
  SG_ RIGHT_TURN_STALK : 16|1@0+ (1,0) [0|1] "" XXX
  SG_ LEFT_TURN_STALK : 17|1@0+ (1,0) [0|1] "" XXX
+ SG_ BRAKE_LIGHT : 18|1@0+ (1,0) [0|1] "" XXX
 
 BO_ 1865 NEW_MSG_749: 8 XXX
  SG_ NEW_SIGNAL_1 : 23|2@0+ (1,0) [0|3] "" XXX
@@ -285,7 +284,7 @@ BO_ 506855454 CAM_UNKNOWN_6: 1 CAMERA
 CM_ SG_ 254 LONG_ACCEL "scale TBD";
 CM_ SG_ 254 LATERAL_ACCEL "scale TBD";
 CM_ SG_ 254 YAW_RATE "scale estimated";
-CM_ SG_ 257 ACC_BRAKE "may correlate with ACC-actuated braking";
+CM_ SG_ 257 ABS_BRAKE "may correlate with ACC-actuated braking";
 CM_ SG_ 278 FORWARD_1 "probably per-axle";
 CM_ SG_ 278 REVERSE_1 "probably per-axle";
 CM_ SG_ 278 FORWARD_2 "probably per-axle";
