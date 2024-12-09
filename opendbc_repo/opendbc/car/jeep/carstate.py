@@ -95,7 +95,7 @@ class CarState(CarStateBase):
       ("ABS_3", 100),
       ("ABS_4", 50),
       ("ABS_6", 100),
-      ("ACC_5", 50)
+      ("ACC_5", 50),
       ("ENGINE_1", 100),
       ("ENGINE_2", 50),
       ("ENGINE_3", 1),
