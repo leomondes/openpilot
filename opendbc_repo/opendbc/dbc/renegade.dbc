@@ -41,7 +41,8 @@ BO_ 249 NEW_MSG_F9: 4 XXX
 BO_ 250 ABS_3: 8 ABS
  SG_ BRAKE_PRESSURE_THRESHOLD : 2|1@0+ (1,0) [0|1] "" XXX
  SG_ BRAKE_PEDAL_SWITCH : 3|1@0+ (1,0) [0|1] "" XXX
- SG_ NEW_SIGNAL_1 : 9|2@0+ (1,0) [0|3] "" XXX
+ SG_ ABS_CAN_INV : 5|1@0+ (1,0) [0|1] "" XXX
+ SG_ ABS_CAN : 7|1@0+ (1,0) [0|1] "" XXX
  SG_ COUNTER : 38|4@0+ (1,0) [0|15] "" XXX
  SG_ ABS_POWER_INV : 42|1@0+ (1,0) [0|3] "" XXX
  SG_ ABS_POWER : 43|1@0+ (1,0) [0|1] "" XXX
