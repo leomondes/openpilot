@@ -160,7 +160,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
 
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {
     // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
-    bool cruise_engaged = GET_BIT(to_push, 2U);;
+    cruise_engaged = GET_BIT(to_push, 2U);
     if (!cruise_engaged) {
       controls_allowed = false;
     }
