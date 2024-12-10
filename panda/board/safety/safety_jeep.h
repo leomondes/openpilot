@@ -19,6 +19,7 @@ const SteeringLimits JEEP_STEERING_LIMITS = {
 #define JEEP_ACC_2           0x1F2 // No counter and checksum
 #define JEEP_ACC_3           0x2FA // CRC-8/SAE-J1850 not regular bits
 #define JEEP_ACC_4           0x73C // No counter and checksum
+#define JEEP_ACC_5           0x1F5 // No counter and checksum
 #define JEEP_ENGINE_1        0xFC // CRC-8/SAE-J1850
 #define JEEP_ENGINE_2        0x1F0 // No counter and checksum
 #define JEEP_EPS_1           0xDE // CRC-8/SAE-J1850
@@ -41,6 +42,7 @@ RxCheck jeep_rx_checks[] = {
   {.msg = {{JEEP_ACC_2, 1, 8, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ACC_3, 1, 4, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ACC_4, 1, 8, .check_checksum = false, .max_counter = 0U, .frequency = 1U}, { 0 }, { 0 }}},
+  {.msg = {{JEEP_ACC_5, 0, 5, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ENGINE_1, 0, 8, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_ENGINE_2, 0, 8, .check_checksum = false, .max_counter = 0U, .frequency = 50U}, { 0 }, { 0 }}},
   {.msg = {{JEEP_EPS_1, 0, 6, .check_checksum = true, .max_counter = 15U, .frequency = 100U}, { 0 }, { 0 }}},
@@ -150,6 +152,15 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
     // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
     int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
     bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
+    if (!cruise_engaged) {
+      controls_allowed = false;
+    }
+    pcm_cruise_check(cruise_engaged);
+  }
+
+  if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {
+    // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
+    bool cruise_engaged = GET_BIT(to_push, 2U);;
     if (!cruise_engaged) {
       controls_allowed = false;
     }
