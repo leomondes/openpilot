@@ -33,8 +33,8 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
   #  pass
 
   def _pcm_status_msg(self, enable):
-    values = {"ACC_BRAKE": 1 if enable else 0}
-    return self.packer.make_can_msg_panda("ACC_5", 0, values)
+    values = {"ACC_ACTIVE": 7 if enable else 0}
+    return self.packer.make_can_msg_panda("ACC_2", 1, values)
 
   def _speed_msg(self, speed):
     values = {"WHEEL_SPEED_%s" % s: speed for s in ["FL", "FR", "RL", "RR"]}
