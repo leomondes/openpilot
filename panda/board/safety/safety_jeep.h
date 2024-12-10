@@ -147,7 +147,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
       controls_allowed = false;
     }
   }
-  if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) | ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {
+  if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) || ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {
     if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
       // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
       unsigned int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
