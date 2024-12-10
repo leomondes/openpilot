@@ -150,14 +150,15 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   
   if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
     // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
-    unsigned int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
+    int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
     bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
     pcm_cruise_check(cruise_engaged);
   }
 
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {
     // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
-    bool cruise_engaged = GET_BIT(to_push, 2U);;
+    int acc_status = GET_BIT(to_push, 2U);
+    bool cruise_engaged = (acc_status == 1);
     pcm_cruise_check(cruise_engaged);
   }
 
