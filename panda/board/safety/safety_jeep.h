@@ -98,7 +98,7 @@ static safety_config jeep_init(uint16_t param) {
 
   brake_pressed = false;
   gas_pressed = false;
-  bool cruise_engaged = false;
+  cruise_engaged = false;
 
   gen_crc_lookup_table_8(0x1D, jeep_crc8_lut_j1850);
   return BUILD_SAFETY_CFG(jeep_rx_checks, JEEP_TX_MSGS);
@@ -152,13 +152,13 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
     // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
     unsigned int acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
-    cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
+    bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8);
     //pcm_cruise_check(cruise_engaged);
   }
 
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {
     // When using stock ACC, enter controls on rising edge of stock ACC engage, exit on disengage
-    cruise_engaged = GET_BIT(to_push, 2U);;
+    bool cruise_engaged = GET_BIT(to_push, 2U);;
     //pcm_cruise_check(cruise_engaged);
   }
   pcm_cruise_check(cruise_engaged);
