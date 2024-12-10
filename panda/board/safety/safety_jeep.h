@@ -98,7 +98,6 @@ static safety_config jeep_init(uint16_t param) {
 
   brake_pressed = false;
   gas_pressed = false;
-  controls_allowed = false;
 
   gen_crc_lookup_table_8(0x1D, jeep_crc8_lut_j1850);
   return BUILD_SAFETY_CFG(jeep_rx_checks, JEEP_TX_MSGS);
