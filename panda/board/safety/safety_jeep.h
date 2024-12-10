@@ -98,6 +98,7 @@ static safety_config jeep_init(uint16_t param) {
 
   brake_pressed = false;
   gas_pressed = false;
+  bool cruise_engaged = false;
 
   gen_crc_lookup_table_8(0x1D, jeep_crc8_lut_j1850);
   return BUILD_SAFETY_CFG(jeep_rx_checks, JEEP_TX_MSGS);
@@ -105,7 +106,6 @@ static safety_config jeep_init(uint16_t param) {
 
 static void jeep_rx_hook(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
-  bool cruise_engaged = false;
 
   // Update in-motion state by sampling wheel speeds
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ABS_1)) {
