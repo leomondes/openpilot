@@ -35,6 +35,10 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
   def _pcm_status_msg(self, enable):
     values = {"ACC_ACTIVE": 7 if enable else 0}
     return self.packer.make_can_msg_panda("ACC_2", 1, values)
+  
+  def _pcm_status_msg_2(self, enable):
+    values = {"ACC_BRAKE": 1 if enable else 0}
+    return self.packer.make_can_msg_panda("ACC_5", 0, values)
 
   def _speed_msg(self, speed):
     values = {"WHEEL_SPEED_%s" % s: speed for s in ["FL", "FR", "RL", "RR"]}
@@ -71,6 +75,7 @@ class TestJeepSafety(common.PandaCarSafetyTest, common.DriverTorqueSteeringSafet
       self.assertTrue(self._rx(self._user_gas_msg(True)), f"{count=}")
       self.assertTrue(self._rx(self._torque_meas_msg(0)), f"{count=}")
       self.assertTrue(self._rx(self._pcm_status_msg(False)), f"{count=}")
+      self.assertTrue(self._rx(self._pcm_status_msg_2(False)), f"{count=}")
 
 if __name__ == "__main__":
   unittest.main()
