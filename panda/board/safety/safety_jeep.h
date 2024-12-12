@@ -104,6 +104,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
   
   bool brake_pressed = false;
+  bool gas_pressed = false;
   int acc_status = 0;
   bool cruise_engaged = false;
   
