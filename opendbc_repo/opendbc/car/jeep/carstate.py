@@ -69,8 +69,7 @@ class CarState(CarStateBase):
     #  ret.gearShifter = GearShifter.drive
 
     ret.cruiseState.available = bool(cp_body.vl["ACC_4"]["ACC_AVAILABLE"])
-    self.acc_state = (cp_body.vl["ACC_2"]["ACC_ACTIVE"]) + (pt_cp.vl["ACC_5"]["ACC_BRAKE"])
-    ret.cruiseState.enabled = self.acc_state != 0
+    ret.cruiseState.enabled = (cp_body.vl["ACC_2"]["ACC_ACTIVE"] in (6, 7, 8)) or (pt_cp.vl["ACC_5"]["ACC_BRAKE"] == 1)
     ret.cruiseState.speed = cp_body.vl["ACC_4"]["ACC_SPEED"] * CV.KPH_TO_MS
 
     self.auto_high_beam = bool(cam_cp.vl["LKA_HUD_2"]["HIGH_BEAM_ALLOWED"])
