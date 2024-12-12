@@ -70,7 +70,7 @@ class CarState(CarStateBase):
 
     ret.cruiseState.available = bool(cp_body.vl["ACC_4"]["ACC_AVAILABLE"])
     ret.cruiseState.enabled = cp_body.vl["ACC_2"]["ACC_ACTIVE"] in (6, 7, 8)
-    if not ret.cruiseState.enabled:
+    if not cp_body.vl["ACC_2"]["ACC_ACTIVE"] in (6, 7, 8):
       ret.cruiseState.enabled = bool(pt_cp.vl["ACC_5"]["ACC_BRAKE"]) 
     ret.cruiseState.speed = cp_body.vl["ACC_4"]["ACC_SPEED"] * CV.KPH_TO_MS
 
