@@ -153,6 +153,8 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
       acc_status = (GET_BIT(to_push, 2U));  
     }
     bool cruise_engaged = (acc_status == 6) || (acc_status == 7) || (acc_status == 8) || (acc_status == 1);
+    pcm_cruise_check(cruise_engaged);
+  }
 
   // If steering controls messages are received on the destination bus, it's an indication
   // that the relay might be malfunctioning
