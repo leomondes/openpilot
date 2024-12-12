@@ -188,7 +188,7 @@ void ignition_can_hook(CANPacket_t *to_push) {
 
     // Renegade exception gear P
     if ((addr == 0x5A9) && (len == 8)) {
-      ignition_can = (GET_BYTE(to_push, 2) & 0xE0U) != 0x1U;
+      ignition_can = ((GET_BYTE(to_push, 2) & 0xE0U) >> 5) != 1U;
       ignition_can_cnt = 0U;
     }
 
