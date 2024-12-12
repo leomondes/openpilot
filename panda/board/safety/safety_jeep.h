@@ -216,3 +216,4 @@ const safety_hooks jeep_hooks = {
   .get_checksum = jeep_get_checksum,
   .compute_checksum = jeep_compute_crc,
 };
+
