@@ -96,16 +96,18 @@ static uint32_t jeep_compute_crc(const CANPacket_t *to_push) {
 static safety_config jeep_init(uint16_t param) {
   UNUSED(param);
 
-  brake_pressed = false;
-  gas_pressed = false;
-
   gen_crc_lookup_table_8(0x1D, jeep_crc8_lut_j1850);
   return BUILD_SAFETY_CFG(jeep_rx_checks, JEEP_TX_MSGS);
 }
 
 static void jeep_rx_hook(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
-
+  
+  bool brake_pressed = false;
+  bool gas_pressed = false;
+  int acc_status = 0;
+  bool cruise_engaged = false;
+  
   // Update in-motion state by sampling wheel speeds
   if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ABS_1)) {
     // Thanks, FCA, for these 13 bit signals. Makes perfect sense. Great work.
@@ -152,8 +154,6 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   // On ACC_2 we have the cruise engaged variable
   // On ACC_5 we have ACC braking bit, while ACC is braking ACC_2 goes temporarily to zero
   if ((addr == JEEP_ACC_2) || (addr == JEEP_ACC_5)) {
-    int acc_status = 0;
-    bool cruise_engaged = false;
     if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
       acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
     } else if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {  
