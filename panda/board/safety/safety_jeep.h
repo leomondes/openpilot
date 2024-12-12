@@ -103,6 +103,7 @@ static safety_config jeep_init(uint16_t param) {
 static void jeep_rx_hook(const CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
   
+  bool brake_pressed = false;
   int acc_status = 0;
   bool cruise_engaged = false;
   
