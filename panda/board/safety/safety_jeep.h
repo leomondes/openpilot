@@ -148,7 +148,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   if (((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) || ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5))) {
     //bool cruise_engaged;
     if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
-      cruise_engaged = ((GET_BYTE(to_push, 4) & 0x0FU) == 6) || ((GET_BYTE(to_push, 4) & 0x0FU) == 7) || ((GET_BYTE(to_push, 4) & 0x0FU) == 8);
+      bool cruise_engaged = ((GET_BYTE(to_push, 4) & 0x0FU) == 6) || ((GET_BYTE(to_push, 4) & 0x0FU) == 7) || ((GET_BYTE(to_push, 4) & 0x0FU) == 8);
     } //else if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {  
       //cruise_engaged = (GET_BIT(to_push, 2U));  
     //}
