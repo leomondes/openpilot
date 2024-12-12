@@ -146,12 +146,10 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   }
   
   if (((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) || ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5))) {
-    int acc_status_1;
-    int acc_status_2;
     if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
-      acc_status_1 = (GET_BYTE(to_push, 4) & 0x0FU);
+      int acc_status_1 = (GET_BYTE(to_push, 4) & 0x0FU);
     } else if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {  
-      acc_status_2 = ((GET_BYTE(to_push, 0) & 0X04U) >> 2);  
+      int acc_status_2 = ((GET_BYTE(to_push, 0) & 0X04U) >> 2);  
     }
     bool cruise_engaged = (acc_status_1 == 6) || (acc_status_1 == 7) || (acc_status_1 == 8) || (acc_status_2 == 1);
     pcm_cruise_check(cruise_engaged);
