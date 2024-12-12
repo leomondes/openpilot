@@ -146,6 +146,7 @@ static void jeep_rx_hook(const CANPacket_t *to_push) {
   }
   
   if (((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) || ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5))) {
+    int acc_status;
     if ((GET_BUS(to_push) == 1U) && (addr == JEEP_ACC_2)) {
       acc_status = (GET_BYTE(to_push, 4) & 0x0FU);
     } else if ((GET_BUS(to_push) == 0U) && (addr == JEEP_ACC_5)) {  
