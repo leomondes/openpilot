@@ -5,7 +5,7 @@ from opendbc.can.parser import CANParser
 from opendbc.can.packer import CANPacker
 from opendbc.can.tests import TEST_DBC
 
-MAX_BAD_COUNTER = 50
+MAX_BAD_COUNTER = 500
 
 
 class TestCanParserPacker:
