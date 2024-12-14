@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
   sr = SegmentRange(args.route_or_segment_name)
 
-  sr.seg_idxs.pop()
+  sr.seg_idxs = sr.seg_idxs[:-1]
   print(sr.seg_idxs)
 
   test_routes = [CarTestRoute(sr.route_name, args.car, segment=seg_idx) for seg_idx in sr.seg_idxs]
