@@ -124,7 +124,7 @@ class TestCarModelBase(unittest.TestCase):
     if cls.test_route.segment is not None:
       test_segs = (cls.test_route.segment,)
     
-    print(test_segs)
+    print(len(INTERNAL_SEG_LIST))
     for seg in test_segs:
       segment_range = f"{cls.test_route.route}/{seg}"
 
