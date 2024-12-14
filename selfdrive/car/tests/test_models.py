@@ -57,6 +57,7 @@ def get_test_cases() -> list[tuple[str, CarTestRoute | None]]:
     segment_list = read_segment_list(os.path.join(BASEDIR, INTERNAL_SEG_LIST))
     segment_list = random.sample(segment_list, INTERNAL_SEG_CNT or len(segment_list))
     for platform, segment in segment_list:
+      print(segment_list)
       platform = MIGRATION.get(platform, platform)
       segment_name = SegmentName(segment)
       test_cases.append((platform, CarTestRoute(segment_name.route_name.canonical_name, platform,
@@ -124,7 +125,6 @@ class TestCarModelBase(unittest.TestCase):
     if cls.test_route.segment is not None:
       test_segs = (cls.test_route.segment,)
 
-    print(test_segs)
     for seg in test_segs:
       segment_range = f"{cls.test_route.route}/{seg}"
 
