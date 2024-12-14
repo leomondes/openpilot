@@ -74,7 +74,7 @@ bool MessageState::parse(uint64_t nanos, const std::vector<uint8_t> &dat) {
 
 
 bool MessageState::update_counter_generic(int64_t v, int cnt_size) {
-  if (((counter + 2) & ((1 << cnt_size) -1)) != v) {
+  if (((counter + 1) & ((1 << cnt_size) -1)) != v) {
     counter_fail = std::min(counter_fail + 1, MAX_BAD_COUNTER);
     if (counter_fail > 1) {
       INFO("0x%X COUNTER FAIL #%d -- %d -> %d\n", address, counter_fail, counter, (int)v);
@@ -83,7 +83,7 @@ bool MessageState::update_counter_generic(int64_t v, int cnt_size) {
     counter_fail--;
   }
   counter = v;
-  return counter_fail < MAX_BAD_COUNTER;
+  return counter_fail < 50;
 }
 
 
