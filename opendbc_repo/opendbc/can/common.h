@@ -15,8 +15,8 @@
 #define DEBUG(...)
 //#define DEBUG printf
 
-#define MAX_BAD_COUNTER 5
-#define CAN_INVALID_CNT 5
+#define MAX_BAD_COUNTER 50
+#define CAN_INVALID_CNT 50
 
 // Car specific functions
 unsigned int honda_checksum(uint32_t address, const Signal &sig, const std::vector<uint8_t> &d);
