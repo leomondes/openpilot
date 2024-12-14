@@ -83,7 +83,7 @@ bool MessageState::update_counter_generic(int64_t v, int cnt_size) {
     counter_fail--;
   }
   counter = v;
-  return counter_fail < 50;
+  return counter_fail > MAX_BAD_COUNTER;
 }
 
 
