@@ -39,7 +39,7 @@ class JeepPlatformConfig(PlatformConfig):
 class JeepCarSpecs(CarSpecs):
   centerToFrontRatio: float = 0.45
   steerRatio: float = 16
-  minSteerSpeed: float = 13.9 # m/s, newer EPS racks fault below this speed, don't show a low speed alert
+  minSteerSpeed: float = 13.5 # m/s, newer EPS racks fault below this speed, don't show a low speed alert
 
 
 @dataclass
