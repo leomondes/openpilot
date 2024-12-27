@@ -30,8 +30,7 @@ if __name__ == "__main__":
 
   sr = SegmentRange(args.route_or_segment_name)
 
-  print(sr.seg_idxs[:-1])
-
+  # avoid last segment
   test_routes = [CarTestRoute(sr.route_name, args.car, segment=seg_idx) for seg_idx in sr.seg_idxs[:-1]]
   test_suite = create_test_models_suite(test_routes)
 
