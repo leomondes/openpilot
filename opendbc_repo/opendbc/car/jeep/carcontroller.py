@@ -20,7 +20,7 @@ class CarController(CarControllerBase):
     actuators = CC.actuators
     can_sends = []
 
-    if CS.out.vEgo > self.CP.minSteerSpeed and CS.out.cruiseState.available:
+    if CS.out.vEgo > self.CP.minSteerSpeed and CS.out.cruiseState.available and not CS.out.brakePressed:
       lkas_active = True
     else:
       lkas_active = False
