@@ -1,9 +1,9 @@
 from opendbc.can.packer import CANPacker
 from openpilot.common.realtime import DT_CTRL
-from openpilot.selfdrive.car import apply_std_steer_angle_limits
-from openpilot.selfdrive.car.interfaces import CarControllerBase
-from openpilot.selfdrive.car.volvo import volvocan
-from openpilot.selfdrive.car.volvo.values import CarControllerParams, SteerDirection
+from openpilot.car import apply_std_steer_angle_limits
+from openpilot.car.interfaces import CarControllerBase
+from openpilot.car.volvo import volvocan
+from openpilot.car.volvo.values import CarControllerParams, SteerDirection
 
 
 class CarController(CarControllerBase):

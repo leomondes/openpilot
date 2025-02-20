@@ -1,8 +1,8 @@
 from cereal import car
 from opendbc.can.parser import CANParser
 from openpilot.common.conversions import Conversions as CV
-from openpilot.selfdrive.car.interfaces import CarStateBase
-from openpilot.selfdrive.car.volvo.values import CarControllerParams, DBC
+from openpilot.car.interfaces import CarStateBase
+from openpilot.car.volvo.values import CarControllerParams, DBC
 
 
 class CarState(CarStateBase):

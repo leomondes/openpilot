@@ -4,9 +4,9 @@ from enum import IntEnum
 from cereal import car
 from panda.python import uds
 from openpilot.common.realtime import DT_CTRL
-from openpilot.selfdrive.car import AngleRateLimit, CarSpecs, dbc_dict, DbcDict, PlatformConfig, Platforms
-from openpilot.selfdrive.car.docs_definitions import CarHarness, CarDocs, CarParts
-from openpilot.selfdrive.car.fw_query_definitions import FwQueryConfig, Request, p16
+from openpilot.car import AngleRateLimit, CarSpecs, dbc_dict, DbcDict, PlatformConfig, Platforms
+from openpilot.car.docs_definitions import CarHarness, CarDocs, CarParts
+from openpilot.car.fw_query_definitions import FwQueryConfig, Request, p16
 
 Ecu = car.CarParams.Ecu
 
