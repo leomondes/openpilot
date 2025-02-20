@@ -21,6 +21,7 @@
 #include "safety/safety_volkswagen_pq.h"
 #include "safety/safety_elm327.h"
 #include "safety/safety_body.h"
+#include "safety/safety_volvo.h"
 
 // CAN-FD only safety modes
 #ifdef CANFD
@@ -55,6 +56,7 @@
 #define SAFETY_BODY 27U
 #define SAFETY_HYUNDAI_CANFD 28U
 #define SAFETY_JEEP 32U
+#define SAFETY_VOLVO 33U
 
 uint32_t GET_BYTES(const CANPacket_t *msg, int start, int len) {
   uint32_t ret = 0U;

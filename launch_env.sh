@@ -12,4 +12,4 @@ fi
 
 export STAGING_ROOT="/data/safe_staging"
 
-export FINGERPRINT="JEEP_RENEGADE_MY22"
+export FINGERPRINT="VOLVO_V60"
