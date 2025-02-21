@@ -62,11 +62,7 @@ def create_lka_msg(packer, apply_steer: float, steer_direction: int):
   }
 
   # calculate checksum
-  dat = packer.make_can_msg("FSM2", 0, values)[2]
-  # If dat has less than 6 bytes, it fill with 0
-  dat = bytearray(dat) if dat else bytearray(6)
-  dat.extend([0] * (6 - len(dat)))
-  # calculate checksum
+  dat = packer.make_can_msg("FSM2", 0, values)[1]
   values["Checksum"] = calculate_lka_checksum(dat)
 
   return packer.make_can_msg("FSM2", 0, values)
