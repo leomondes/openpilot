@@ -1,6 +1,6 @@
 from cereal import car
 from opendbc.car.structs import CarParams
-from opendbc.car.jeep.values import CAR
+from opendbc.car.volvo.values import CAR
 
 Ecu = car.CarParams.Ecu
 

@@ -31,7 +31,7 @@ def create_lkas_state_msg(packer, steering_angle: float, stock_values: dict):
   return packer.make_can_msg("PSCM1", 2, msg)
 
 
-def calculate_lka_checksum(dat: bytes) -> int:
+def calculate_lka_checksum(dat: bytearray) -> int:
   # Input: dat byte array, and fingerprint
   # Steering direction = 0 -> 3
   # TrqLim = 0 -> 255
@@ -63,6 +63,10 @@ def create_lka_msg(packer, apply_steer: float, steer_direction: int):
 
   # calculate checksum
   dat = packer.make_can_msg("FSM2", 0, values)[2]
+  # If dat has less than 6 bytes, it fill with 0
+  dat = bytearray(dat) if dat else bytearray(6)
+  dat.extend([0] * (6 - len(dat)))
+  # calculate checksum
   values["Checksum"] = calculate_lka_checksum(dat)
 
   return packer.make_can_msg("FSM2", 0, values)

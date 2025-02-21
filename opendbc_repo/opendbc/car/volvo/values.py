@@ -4,9 +4,11 @@ from enum import IntEnum
 from cereal import car
 from panda.python import uds
 from openpilot.common.realtime import DT_CTRL
-from openpilot.car import AngleRateLimit, CarSpecs, dbc_dict, DbcDict, PlatformConfig, Platforms
-from openpilot.car.docs_definitions import CarHarness, CarDocs, CarParts
-from openpilot.car.fw_query_definitions import FwQueryConfig, Request, p16
+from opendbc.car import Bus, AngleRateLimit, CarSpecs, DbcDict, PlatformConfig, Platforms
+from opendbc.car.docs_definitions import CarHarness, CarDocs, CarParts
+from opendbc.car.fw_query_definitions import FwQueryConfig, Request, p16
+
+from opendbc.can.can_define import CANDefine
 
 Ecu = car.CarParams.Ecu
 
@@ -74,12 +76,18 @@ class CarControllerParams:
   DEADZONE = 0.1
 
   def __init__(self, CP):
-    pass
+    can_define = CANDefine(DBC[CP.carFingerprint][Bus.pt])
+    #pass
 
+class CANBUS:
+  pt = 0
+  body = 1
+  cam = 2
 
 @dataclass
 class VolvoEUCDPlatformConfig(PlatformConfig):
-  dbc_dict: DbcDict = field(default_factory=lambda: dbc_dict('volvo_v60_2015_pt', None))
+  #dbc_dict: DbcDict = field(default_factory=lambda: dbc_dict('volvo_v60_2015_pt', None))
+  dbc_dict: DbcDict = field(default_factory=lambda: {Bus.pt: 'volvo_v60_2015_pt'})
 
 
 @dataclass
@@ -96,6 +104,8 @@ class VolvoCarSpecs(CarSpecs):
 
 
 class CAR(Platforms):
+  config: VolvoEUCDPlatformConfig
+
   VOLVO_V60 = VolvoEUCDPlatformConfig(
     [VolvoCarDocs("Volvo V60")],
     VolvoCarSpecs(mass=1750, wheelbase=2.776),
