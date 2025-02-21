@@ -168,6 +168,10 @@ class CarSpecificEvents:
         self.low_speed_alert = False
       if self.low_speed_alert:
         events.add(EventName.belowSteerSpeed)
+    
+    elif self.CP.carName == 'volvo':
+      #events = Events()
+      events = self.create_common_events(CS, CS_prev, pcm_enable=not self.CP.openpilotLongitudinalControl)
 
     else:
       raise ValueError(f"Unsupported car: {self.CP.carName}")
