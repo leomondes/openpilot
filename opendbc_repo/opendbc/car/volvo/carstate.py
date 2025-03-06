@@ -48,6 +48,9 @@ class CarState(CarStateBase):
     ret.accFaulted = False
     self.acc_distance = cam_cp.vl["FSM1"]["ACC_Distance"]
 
+    # cruise state
+    self.accel = cam_cp.vl["FSM3"]["ACC_AccelDecel"]
+
     # Check if servo stops responding when ACC is active
     if ret.cruiseState.enabled and ret.vEgo > self.CP.minSteerSpeed:
       # Reset counter on entry
