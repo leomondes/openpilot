@@ -36,8 +36,10 @@ class CarState(CarStateBase):
 
     # steering
     ret.steeringAngleDeg = pt_cp.vl["PSCM1"]["SteeringAngleServo"]
+    ret.steeringRateDeg = pt_cp.vl["SAS0"]["SteeringRateOfChange"]
+    ret.steeringTorque = pt_cp.vl["PSCM1"]["EPSTorque"]
     ret.steeringTorqueEps = pt_cp.vl["PSCM1"]["LKATorque"]
-    ret.steeringPressed = False  # TODO
+    ret.steeringPressed = abs(ret.steeringTorque) > 50    
 
     # cruise state
     ret.cruiseState.speed = pt_cp.vl["ACC_Speed"]["ACC_Speed"] * CV.KPH_TO_MS
@@ -99,6 +101,7 @@ class CarState(CarStateBase):
       ("ACC_Speed", 50),
       ("MiscCarInfo", 25),
       ("Doors", 20),
+      ("SAS0", 100)
     ]
 
     cam_messages = [
