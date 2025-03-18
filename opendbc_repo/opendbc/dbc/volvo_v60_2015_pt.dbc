@@ -125,7 +125,7 @@ BO_ 565 wheelspeed0: 8 BCM
 
 BO_ 582 PSCM1: 8 PSCM
  SG_ byte0 : 7|8@0+ (1,0) [0|255] "" XXX
- SG_ SteeringWheelRateOfChange : 15|8@0+ (1,0) [0|255] "" XXX
+ SG_ EPSTorque : 15|8@0+ (1,0) [0|255] "" XXX
  SG_ SteeringAngleServo : 23|16@0+ (0.0447,-1464.8) [0|65535] "deg" XXX
  SG_ LKATorque : 35|12@0+ (1,-2000) [0|65535] "" XXX
  SG_ byte4 : 39|4@0+ (1,0) [0|15] "" XXX
@@ -285,7 +285,7 @@ CM_ SG_ 298 NEW_SIGNAL_6 "went high at same time as ACCStatus >= 2";
 CM_ SG_ 298 BrakePressed "driver";
 CM_ SG_ 298 EngineRpm "Might be engine rpm. But behaves abit weird.";
 CM_ SG_ 582 byte0 "0=CCW, 1=CW, bit 2,";
-CM_ SG_ 582 SteeringWheelRateOfChange "Some rate of change for steering wheel? Torque?";
+CM_ SG_ 582 EPSTorque "Some rate of change for steering wheel? Torque?";
 CM_ SG_ 582 byte4 "High nibble";
 CM_ SG_ 582 LKAActive "Bit 1, 1 When LKA Active, Bit 3, 1 When denying?";
 CM_ SG_ 608 ACC_Distance "Seems to track distance, or speed of vehicle in front.";
