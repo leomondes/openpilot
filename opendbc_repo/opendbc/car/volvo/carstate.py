@@ -37,7 +37,11 @@ class CarState(CarStateBase):
     # steering
     ret.steeringAngleDeg = pt_cp.vl["PSCM1"]["SteeringAngleServo"]
     ret.steeringRateDeg = pt_cp.vl["SAS0"]["SteeringRateOfChange"]
-    ret.steeringTorque = pt_cp.vl["PSCM1"]["EPSTorque"]
+    self.steeringDirection = pt_cp.vl["SAS0"]["SteeringDirection"] # is 1 with negative angle / steering right
+    if self.steeringDirection:
+      ret.steeringTorque = pt_cp.vl["PSCM1"]["EPSTorque"] * -1
+    else:
+      ret.steeringTorque = pt_cp.vl["PSCM1"]["EPSTorque"]  
     ret.steeringTorqueEps = pt_cp.vl["PSCM1"]["LKATorque"]
     ret.steeringPressed = abs(ret.steeringTorque) > 50    
 
