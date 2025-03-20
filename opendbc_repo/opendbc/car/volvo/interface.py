@@ -1,6 +1,7 @@
 from opendbc.car import get_safety_config, structs
 from opendbc.car.interfaces import CarInterfaceBase
 from opendbc.car.volvo.values import CAR
+from panda import Panda
 
 #ButtonType = car.CarState.ButtonEvent.Type
 #EventName = car.CarEvent.EventName
