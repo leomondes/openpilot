@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from enum import IntEnum
 
 from opendbc.car.structs import CarParams
-from panda.python import uds
+from panda import uds
 from openpilot.common.realtime import DT_CTRL
 from opendbc.car import Bus, AngleRateLimit, CarSpecs, DbcDict, PlatformConfig, Platforms
 from opendbc.car.docs_definitions import CarHarness, CarDocs, CarParts
