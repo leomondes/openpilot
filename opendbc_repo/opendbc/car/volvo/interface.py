@@ -13,7 +13,7 @@ class CarInterface(CarInterfaceBase):
     # ret.dashcamOnly = True
     ret.radarUnavailable = True
 
-    ret.steerControlType = car.CarParams.SteerControlType.angle
+    ret.steerControlType = structs.CarParams.SteerControlType.angle
 
     ret.steerActuatorDelay = 0.4
     ret.steerLimitTimer = 0.8
