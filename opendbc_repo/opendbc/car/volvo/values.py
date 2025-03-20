@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from enum import IntEnum
 
-from cereal import car
+from opendbc.car.structs import CarParams
 from panda.python import uds
 from openpilot.common.realtime import DT_CTRL
 from opendbc.car import Bus, AngleRateLimit, CarSpecs, DbcDict, PlatformConfig, Platforms
@@ -10,7 +10,7 @@ from opendbc.car.fw_query_definitions import FwQueryConfig, Request, p16
 
 from opendbc.can.can_define import CANDefine
 
-Ecu = car.CarParams.Ecu
+Ecu = CarParams.Ecu
 
 """
 Volvo Electronic Control Units abbreviations and network topology
