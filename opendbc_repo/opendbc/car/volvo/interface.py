@@ -18,4 +18,6 @@ class CarInterface(CarInterfaceBase):
     ret.steerActuatorDelay = 0.4
     ret.steerLimitTimer = 0.8
 
+    ret.safetyConfigs[0].safetyParam |= Panda.SAFETY_VOLVO
+
     return ret
