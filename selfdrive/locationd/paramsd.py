@@ -251,7 +251,8 @@ def main():
       if sm.frame % 1200 == 0:  # once a minute
         params = {
           'carFingerprint': CP.carFingerprint,
-          'steerRatio': liveParameters.steerRatio,
+          #'steerRatio': liveParameters.steerRatio,
+          'steerRatio': CP.steerRatio,
           'stiffnessFactor': liveParameters.stiffnessFactor,
           'angleOffsetAverageDeg': liveParameters.angleOffsetAverageDeg,
         }
