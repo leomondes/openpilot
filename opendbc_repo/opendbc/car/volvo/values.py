@@ -73,7 +73,7 @@ class CarControllerParams:
   # When close to desired steering angle, don't change steer direction inside deadzone.
   # Since we need to release control of the steering wheel for a brief moment, steering wheel will
   # unwind by itself.
-  DEADZONE = 0.2
+  DEADZONE = 0.5
 
   def __init__(self, CP):
     can_define = CANDefine(DBC[CP.carFingerprint][Bus.pt])
@@ -99,7 +99,7 @@ class VolvoCarDocs(CarDocs):
 @dataclass(frozen=True)
 class VolvoCarSpecs(CarSpecs):
   steerRatio: float = 15.0
-  centerToFrontRatio: float = 0.44
+  centerToFrontRatio: float = 0.35 #default 0.44
   minSteerSpeed: float = 1.0
 
 

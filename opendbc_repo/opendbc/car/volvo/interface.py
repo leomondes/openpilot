@@ -16,7 +16,7 @@ class CarInterface(CarInterfaceBase):
 
     ret.steerControlType = car.CarParams.SteerControlType.angle
 
-    ret.steerActuatorDelay = 0.4
+    ret.steerActuatorDelay = 0.2
     ret.steerLimitTimer = 0.8
 
     return ret

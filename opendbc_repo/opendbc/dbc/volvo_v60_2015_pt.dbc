@@ -126,7 +126,7 @@ BO_ 565 wheelspeed0: 8 BCM
 BO_ 582 PSCM1: 8 PSCM
  SG_ byte0 : 7|8@0+ (1,0) [0|255] "" XXX
  SG_ EPSTorque : 15|8@0+ (1,0) [0|255] "" XXX
- SG_ SteeringAngleServo : 23|16@0+ (0.0447,-1464.8) [0|65535] "deg" XXX
+ SG_ SteeringAngleServo : 23|16@0+ (0.0447,-1465.3) [0|65535] "deg" XXX
  SG_ LKATorque : 35|12@0+ (1,-2000) [0|65535] "" XXX
  SG_ byte4 : 39|4@0+ (1,0) [0|15] "" XXX
  SG_ LKAActive : 55|8@0+ (1,0) [0|255] "" XXX
